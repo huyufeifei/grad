@@ -1,4 +1,5 @@
-这是一个域，为内核提供操作fat文件系统的功能。
+这是一个域，为内核提供操作fat文件系统的功能。  
+本文档旨在帮助后来者更快地理解代码，为此对其各个部分进行讲解。
 
 ## 外界接口
 
@@ -47,7 +48,7 @@ pub struct FatFsDomain {
 }
 ```
 
-其中储存一个代表根目录的自动引用计数指针。
+其中储存一个代表根目录的自动引用计数指针。  
 我们使用了`os-module/rvfs`提供的`fat-vfs`和`vfscore` crate，它们是独立的os子模块，提供了vfs的实现。
 
 为其实现必须的trait `Fs`：
@@ -55,9 +56,9 @@ pub struct FatFsDomain {
 ###### ls
 
 ```rust
-	fn ls(&self, path: RRef<[u8; 512]>) -> RpcResult<RRef<[u8;512]>> {
-		unimplemented!()
-	}
+fn ls(&self, path: RRef<[u8; 512]>) -> RpcResult<RRef<[u8;512]>> {
+	unimplemented!()
+}
 ```
 暂未实现
 
@@ -106,7 +107,7 @@ impl FatFsProvider for ProviderImpl {
 ```
 ##### FakeInode
 
-定义了一个 FakeInode 结构体表示 Inode，存放文件的索引信息。
+定义了一个 FakeInode 结构体表示 Inode，存放文件的索引信息。  
 实现 `VfsInode` trait，它有很多的函数需要实现，不过现在的原型系统中，我们只对必要的函数简单的返回最高权限、全0的状态等。类型返回块设备。
 
 `VfsInode` 又需要我们实现 `VfsFile` trait，我们现在实现了读、写、刷新。
