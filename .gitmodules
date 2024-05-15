@@ -1,0 +1,6 @@
+[submodule "svdrivers"]
+	path = svdrivers
+	url = git@github.com:huyufeifei/svdrivers
+[submodule "Alien"]
+	path = Alien
+	url = git@github.com:huyufeifei/Alien
