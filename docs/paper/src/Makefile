@@ -1,5 +1,5 @@
 build:
-	typst compile thesis.typ --font-path fonts
+	typst compile thesis.typ --font-path template/fonts
 
 clean:
 	rm *.pdf

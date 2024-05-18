@@ -1,4 +1,5 @@
 #import "fakebold.typ": *
+#import "util.typ": *
 #import "ch_padding.typ": ch_padding
 
 #let fsz = (
@@ -26,7 +27,8 @@
   song: ("Times New Roman", "SimSun"), // 宋体
   hei: ("Times New Roman", "SimHei"), // 黑体
   kai: ("Times New Roman", "KaiTi"), // 楷体
-  code: ("New Computer Modern Mono", "Times New Roman", "SimSun"),
+  code: ("Fira Code", "New Computer Modern Mono", "Times New Roman", "SimSun"),
+  // since there is no standard code font, you can use whatever you like 
 )
 
 #let lengthceil(len, unit: fsz.s_four) = calc.ceil(len / unit) * unit
@@ -77,13 +79,13 @@
   }
 }
 
-#let chinesenumbering(..nums, location: none, brackets: false) = locate(loc => {
+#let chinesenumbering(..nums, location: none, brackets: false, split: ".") = locate(loc => {
   let actual_loc = if location == none { loc } else { location }
   if appendixcounter.at(actual_loc).first() < 10 {
     if nums.pos().len() == 1 {
       "第" + str(nums.pos().first()) + "章"
     } else {
-      numbering(if brackets { "(1.1)" } else { "1.1" }, ..nums)
+      numbering(if brackets { "(1" + aplit + "1)" } else { "1" + split + "1" }, ..nums)
     }
   } else {
     if nums.pos().len() == 1 {
@@ -396,7 +398,8 @@
   set list(indent: 2em)
   set enum(indent: 2em)
 
-  show strong: it => show-fakebold(weight: "bold", it.body)
+// if your system fonts support bold character, then comment this line
+//  show strong: it => show-fakebold(weight: "bold", it.body)
   show emph: it => text(style: "italic", it.body)
   show par: set block(spacing: linespacing)
   show raw: set text(font: ff.code)
@@ -411,7 +414,7 @@
       set text(size: sz)
       strong(s)
       v(after)
-      par(v(-1em)+h(0em))
+      empty_par
     }
 
     #if it.level == 1 {
@@ -455,10 +458,10 @@
       ]
       it.body
     } else if it.kind == "code" {
-      [
-        code#it.caption
-      ]
       it.body
+      [
+        代码#it.caption
+      ]
     }
   ]
 
@@ -480,7 +483,7 @@
             chaptercounter.at(el_loc).first(),
             equationcounter.at(el_loc).first(),
             location: el_loc,
-            brackets: true,
+            split: "-",
           )
         ])
       } else if el.func() == figure {
@@ -492,6 +495,7 @@
               chaptercounter.at(el_loc).first(),
               imagecounter.at(el_loc).first(),
               location: el_loc,
+              split: "-",
             )
           ])
         } else if el.kind == table {
@@ -501,15 +505,17 @@
               chaptercounter.at(el_loc).first(),
               tablecounter.at(el_loc).first(),
               location: el_loc,
+              split: "-",
             )
           ])
         } else if el.kind == "code" {
           link(el_loc, [
-            code
+            代码
             #chinesenumbering(
               chaptercounter.at(el_loc).first(),
               rawcounter.at(el_loc).first(),
               location: el_loc,
+              split: "-",
             )
           ])
         }

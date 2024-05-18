@@ -18,7 +18,7 @@
   eabstract: eabs,
   ekeywords: ekw,
   acknowledgements: ack,
-  blind: false,
+  blind: true,
   doc,
 )
 
