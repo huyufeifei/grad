@@ -1,0 +1,4 @@
+.DS_Store
+*.pdf
+build/thesis.pdf
+!/build/thesis.pdf
