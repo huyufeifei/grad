@@ -1,10 +1,10 @@
-#import "template.typ": *
+#import "template/template.typ": *
+#import "misc.typ": *
 
 #show: doc => conf(
   cauthor: "罗博文",
   eauthor: "Bowen Luo",
   studentid: "1120203276",
-  cthesisname: "本科生毕业设计（论文）",
   cheader: "",
   ctitle: "基于Rust语言支持的单地址空间模块隔离方法",
   etitle: "Rust language-based modules compartmentalization for single address space operating system",
@@ -16,23 +16,26 @@
   csupervisor: "陆慧梅",
   esupervisor: "",
   date: "2024年5月17日",
-  cabstract: "摘要 。。。",
-  ckeywords: ("Rust", "隔离", "驱动", "操作系统"),
-  eabstract: "Abstract...",
-  ekeywords: ("Rust", "isolation", "driver", "OS"),
-  acknowledgements: [感谢 ...],
-  linespacing: 1em,
-  outlinedepth: 3,
+  cabstract: cabs,
+  ckeywords: ckw,
+  eabstract: eabs,
+  ekeywords: ekw,
+  acknowledgements: ack,
   blind: false,
-  listofimage: true,
-  listoftable: true,
-  listofcode: true,
   doc,
 )
 
 = 基本功能 <intro>
 
-== 标题
+== 很长很长很长很长标题
+
+撒旦艰苦奋斗
+
+=== 三级标题
+撒旦艰苦奋斗
+
+==== 很长很长很长很长四级标题
+撒旦艰苦奋斗
 
 Typst 中的标题使用 `=` 表示，其后跟着标题的内容。`=` 的数量对应于标题的级别。
 
@@ -136,11 +139,14 @@ Typst 中的标题使用 `=` 表示，其后跟着标题的内容。`=` 的数�
           ) <web>
           ```,
   [
-    #figure(image("images/1-writing-app.png", width: 100%), caption: "Typst 网页版界面") <web>
+    #figure(
+            image("template/bit_name.png", width: 100%),
+            caption: "Typst 网页版界面",
+          ) <web>
   ],
 )\
 
-@web 展示了 Typst 网页版的界面。更多有关内容，可以参考 @about。@developers 中介绍了 Typst 的主要开发者。代码中的
+展示了 Typst 网页版的界面。更多有关内容，可以参考 @about。@developers 中介绍了 Typst 的主要开发者。代码中的
 `<web>` 是这一图片的标签，可以在文中通过 `@web` 来引用。
 
 == 表格
@@ -432,7 +438,7 @@ op("lim", limits: #true)_x $
 
 附录中也可以插入图片，如 @web1。
 
-#figure(image("images/1-writing-app.png", width: 100%), caption: "Typst 网页版界面") <web1>
+Typst 网页版界面 <web1>
 
 附录中也可以插入公式，如 @appendix-eq。
 
@@ -488,7 +494,7 @@ op("lim", limits: #true)_x $
   ],
   ```typ
           $ vec(overline(underbracket(underline(1 + 2) + overbrace(3 + dots.c + 10, "large numbers"), underbrace(x + norm(y), y^(w^u) - root(t, z)))), dots.v, u)^(frac(x + 3, y - 2)) $ <complex>
-            ```,
+  ```,
   [
     $ vec(overline(underbracket(
       underline(1 + 2) + overbrace(3 + dots.c + 10, "large numbers"),
@@ -515,8 +521,6 @@ op("lim", limits: #true)_x $
 #lorem(1000)
 
 = 更新日志 <changelog>
-
-#include "changelog.typ"
 
 #pagebreak()
 #bibliography("ref.bib", style: "ieee")
