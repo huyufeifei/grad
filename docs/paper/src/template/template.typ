@@ -724,12 +724,12 @@
   par(justify: true, first-line-indent: 2em, leading: linespacing)[
     #doc
   ]
-
   // acknowledgement ------------------------------
-  heading(numbering: none, [致#h(1em)谢])
-  par(justify: true, first-line-indent: 2em, leading: linespacing)[
-    #text(font: ff.song, size: fsz.s_four, acknowledgements)
-  ]
-  
+  if not blind {
+    heading(numbering: none, [致#h(1em)谢])
+    par(justify: true, first-line-indent: 2em, leading: linespacing)[
+      #text(font: ff.song, size: fsz.s_four, acknowledgements)
+    ]
+  }
   
 }
