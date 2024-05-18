@@ -1,4 +1,7 @@
 build:
 	typst compile thesis.typ --font-path fonts
 
-.PHONY: build
+clean:
+	rm *.pdf
+
+.PHONY: build clean

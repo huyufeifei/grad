@@ -411,6 +411,7 @@
       set text(size: sz)
       strong(s)
       v(after)
+      par(v(-1em)+h(0em))
     }
 
     #if it.level == 1 {
@@ -423,7 +424,6 @@
       tablecounter.update(())
       rawcounter.update(())
       equationcounter.update(())
-      
 
       set align(center)
       makeheading(after: 1em, fsz.three, it)
@@ -584,7 +584,7 @@
     box(image("bit_name.png", height: 2.2em))
     linebreak()
     set text(fsz.s_chu, font: ff.song)
-    strong(cthesisname)
+    strong(ch_padding(pad: 3pt, cthesisname))
 
     set text(size: fsz.two, font: ff.hei)
     v(30pt)
@@ -728,8 +728,8 @@
   // acknowledgement ------------------------------
   heading(numbering: none, [致#h(1em)谢])
   par(justify: true, first-line-indent: 2em, leading: linespacing)[
-    #par(v(-1em)+h(0em))
     #text(font: ff.song, size: fsz.s_four, acknowledgements)
   ]
+  
   
 }
