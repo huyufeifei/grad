@@ -335,9 +335,7 @@
   // alwaysstartodd: false,
   doc,
 ) = {
-  // very dirty. I believe there is a better way to cancel footnote come from citation.
-  set footnote.entry(separator: none, clearance: 0em, gap: -0.5em)
-  show footnote.entry : it => [#text(white)[.]]
+  
   let smartpagebreak = () => {
     // if alwaysstartodd {
     //   skippedstate.update(true)
@@ -396,6 +394,7 @@
   }))
   set list(indent: 2em)
   set enum(indent: 2em)
+  set bibliography(style: "gb-7714-2015-numeric")
 
   // if your system fonts support bold character, then comment this line
   show strong: it => show-fakebold(it.body)
@@ -421,7 +420,7 @@
       if it.numbering != none {
         chaptercounter.step()
       }
-      // footnotecounter.update(())
+      footnotecounter.update(())
       imagecounter.update(())
       tablecounter.update(())
       rawcounter.update(())
@@ -467,15 +466,7 @@
   show ref: it => {
     if it.element == none {
       // Keep citations as is
-
-      // every cite can only appear once, or the index will be confused ... this template nearly cannot use
-      let ref_no = counter(ref).at(it.location()).first();
-      let ref = query(heading.where(level: 1)).last().location()
-      [
-          // It cannot link to references at the last of paper.
-          // Instead it goes top. This maybe the shitest part of the template.
-          #link(ref, super("["))#it#link(ref, super("]"))
-      ]
+      it
     } else {
       // Remove prefix spacing
       h(0em, weak: true)
