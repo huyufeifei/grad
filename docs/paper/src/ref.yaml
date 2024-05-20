@@ -4,3 +4,185 @@ y1:
   author: Trent Jaeger
   organization: Systems and Internet Infrastructure Security (SIIS) Lab \ Computer Science and Engineering Department \ Pennsylvania State University
   url: https://www.cse.psu.edu/~trj1/cse543-f18/slides/cse543-secure-os.pdf
+
+y2:
+  type: article
+  title: operating system security and secure operating systems
+  author: Cui-Qing Yang
+  url: https://www.giac.org/paper/gsec/2776/operating-system-security-secure-operating-systems/104723
+  edition: 1.4b
+  date: 2003-01
+
+sel4:
+  type: article
+  title: "seL4: Formal Verification of an OS Kernel"
+  author: ["Gerwin Klein",
+      "Kevin Elphinstone",
+      "Gernot Heiser",
+      "June Andronick",
+      "David Cock",
+      "Philip Derrin",
+      "Dhammika Elkaduwe",
+      "Kai Engelhardt",
+      "Rafal Kolanski",
+      "Michael Norrish",
+      "Thomas Sewell",
+      "Harvey Tuch",
+      "Simon Winwood"]
+  date: 2009-10
+  page-range: 207-220
+  serial-number:
+    doi: "10.1145/1629575.1629596"
+  parent:
+    title: "SOSP '09: Proceedings of the ACM SIGOPS 22nd symposium on Operating systems principles"
+
+y3:
+  type: web
+  title: Microkernel in Operating Systems
+  date: 2023-06-25
+  url: https://www.geeksforgeeks.org/microkernel-in-operating-systems/
+
+y4:
+  type: article
+  title: Understanding the Overheads of Hardware and Language-Based IPC Mechanisms
+  author: ["Zhaofeng Li",
+          "Tianjiao Huang",
+          "Vikram Narayanan",
+          "Anton Burtsev"]
+  date: 2021-10
+  page-range: 53-61
+  serial-number:
+    doi: "10.1145/3477113.3487275"
+  parent:
+    title: "PLOS '21: Proceedings of the 11th Workshop on Programming Languages and Operating Systems"
+
+redleaf:
+  type: article
+  title: "RedLeaf: Isolation and Communication in a Safe Operating System"
+  author: ["Vikram Narayanan",
+    "Tianjiao Huang",
+    "David Detweiler",
+    "Dan Appel",
+    "Zhaofeng Li",
+    "Gerd Zellweger",
+    "Anton Burtsev"]
+  date: 2020-11
+  page-range: 21-39
+  url: https://www.usenix.org/conference/osdi20/presentation/narayanan-vikram
+  parent:
+    publisher: USENIX Association
+    title: 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20)
+    serial-number:
+      isbn: 978-1-939133-19-9
+
+jkernel:
+  type: article
+  author: ["Thorsten von Eicken", "Chi-Chao Chang", "Grzegorz Czajkowski", "Chris Hawblitzel", "Deyu Hu", "Dan Spoonhower"]
+  title: "J-Kernel: A Capability-Based Operating System for Java"
+  page-range: 369–393
+  date: 1999
+  serial-number:
+    doi: 10.5555/380171.380202
+  parent:
+     title: "Secure Internet Programming: Security Issues for Mobile and Distributed Objects"
+
+kaffeos:
+  type: article
+  title: The KaffeOS Java runtime system
+  page-range: 583–630
+  date: 2005
+  author: ["Godmar Back","Wilson C. Hsieh"]
+  serial-number:
+    doi: 10.1145/1075382.1075383
+  parent:
+    title: ACM Transactions on Programming Languages and Systems
+    volume: 27
+    issue: 4
+
+sing:
+  type: article
+  title: "Singularity: rethinking the software stack"
+  serial-number:
+    doi: 10.1145/1243418.1243424
+  author: ["Galen C. Hunt", "James R. Larus"]
+  page-range: 37-49
+  date: 2007-04
+  parent:
+    title: ACM SIGOPS Operating Systems Review
+    volume: 41
+    issue: 2
+
+sing2:
+  type: article
+  title: Language support for fast and reliable message-based communication in singularity OS
+  date: 2006-04-18
+  page-range: 177-190
+  serial-number:
+    doi: 10.1145/1218063.1217953
+  parent:
+    title: ACM SIGOPS Operating Systems Review
+    volume: 40
+    issue: 4
+  author: ["Manuel Fähndrich",
+      "Mark Aiken",
+      "Chris Hawblitzel",
+      "Orion Hodson",
+      "Galen Hunt",
+      "James R. Larus",
+      "Steven Levi",]
+
+theseus:
+  type: article
+  title: "Theseus: an Experiment in Operating System Structure and State Management"
+  author: ["Kevin Boos", "Namitha Liyanage", "Ramla Ijaz", "Lin Zhong"]
+  date: 2020-11
+  page-range: 1-19
+  url: https://www.usenix.org/conference/osdi20/presentation/boos
+  parent:
+    title: 14th USENIX Symposium on Operating Systems Design and Implementation (OSDI 20)
+    serial-number:
+      isbn: 978-1-939133-19-9
+    publisher: USENIX Association
+
+asterinas:
+  type: web
+  title: The Asterinas Book
+  url: https://asterinas.github.io/book/
+
+virtio:
+  type: web
+  title: Virtual I/O Device (VIRTIO)
+  edition: "1.1"
+  date: "2018-12-20"
+  url: https://docs.oasis-open.org/virtio/virtio/v1.1/virtio-v1.1.html
+  organization: OASIS
+
+reb:
+  title: The Embedded Rust Book
+  type: book
+  url: https://docs.rust-embedded.org/book/start/panicking.html
+  chapter: 2
+
+rust:
+  title: The Rust Programming Language
+  author: ["Steve Klabnik", "Carol Nichols"]
+  date: 2019
+  type: book
+  publisher: No Starch Press
+
+shadow:
+  type: article
+  title: Recovering device drivers
+  serial-number:
+    doi: 10.1145/1189256.1189257
+  date: 2006
+  page-range: 333–360
+  author: [ "Michael M. Swift", 
+    "Muthukaruppan Annamalai", 
+    "Brian N. Bershad",
+    "Henry M. Levy"]
+  parent:
+    title: ACM Transactions on Computer Systems
+    volume: 24
+    issue: 4
+  

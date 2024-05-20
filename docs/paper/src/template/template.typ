@@ -27,8 +27,8 @@
   song: ("Times New Roman", "SimSun"), // 宋体
   hei: ("Times New Roman", "SimHei"), // 黑体
   kai: ("Times New Roman", "KaiTi"), // 楷体
-  code: ("Fira Code", "New Computer Modern Mono", "Times New Roman", "SimSun"),
-  // since there is no standard code font, you can use whatever you like 
+  code: ("New Computer Modern Mono", "Times New Roman", "SimSun"),
+  // since there is no standard code font, you can use whatever you like
 )
 
 #let lengthceil(len, unit: fsz.s_four) = calc.ceil(len / unit) * unit
@@ -79,22 +79,24 @@
   }
 }
 
-#let chinesenumbering(..nums, location: none, brackets: false, split: ".") = locate(loc => {
-  let actual_loc = if location == none { loc } else { location }
-  if appendixcounter.at(actual_loc).first() < 10 {
-    if nums.pos().len() == 1 {
-      "第" + str(nums.pos().first()) + "章"
+#let chinesenumbering(..nums, location: none, brackets: false, split: ".") = locate(
+  loc => {
+    let actual_loc = if location == none { loc } else { location }
+    if appendixcounter.at(actual_loc).first() < 10 {
+      if nums.pos().len() == 1 {
+        "第" + str(nums.pos().first()) + "章"
+      } else {
+        numbering(if brackets { "(1" + aplit + "1)" } else { "1" + split + "1" }, ..nums)
+      }
     } else {
-      numbering(if brackets { "(1" + aplit + "1)" } else { "1" + split + "1" }, ..nums)
+      if nums.pos().len() == 1 {
+        "附录 " + numbering("A.1", ..nums)
+      } else {
+        numbering(if brackets { "(A.1)" } else { "A.1" }, ..nums)
+      }
     }
-  } else {
-    if nums.pos().len() == 1 {
-      "附录 " + numbering("A.1", ..nums)
-    } else {
-      numbering(if brackets { "(A.1)" } else { "A.1" }, ..nums)
-    }
-  }
-})
+  },
+)
 
 #let chineseunderline(s, width: 300pt, bold: false) = {
   let chars = s.clusters()
@@ -333,56 +335,53 @@
   // alwaysstartodd: false,
   doc,
 ) = {
+  // very dirty. I believe there is a better way to cancel footnote come from citation.
+  set footnote.entry(separator: none, clearance: 0em, gap: -0.5em)
+  show footnote.entry : it => [#text(white)[.]]
   let smartpagebreak = () => {
     // if alwaysstartodd {
     //   skippedstate.update(true)
     //   pagebreak(to: "odd", weak: true)
     //   skippedstate.update(false)
     // } else {
-      pagebreak(weak: true)
+    pagebreak(weak: true)
     // }
   }
 
   set page(
     "a4",
-    margin: (
-      left: 3cm,
-      right: 2.6cm,
-      top: 3.5cm,
-      bottom: 2.6cm,
-    ),
+    margin: (left: 3cm, right: 2.6cm, top: 3.5cm, bottom: 2.6cm),
     header-ascent: 0%,
-    header: locate(
-      loc => {
-        set text(size: fsz.four, font: ff.song)
-        set align(center)
-        let part = partcounter.at(loc).first()     
-        let pg = counter(page).at(loc).first()
-        if (part != 0) or (pg != 1) {[
+    footer-descent: 20%,
+    header: locate(loc => {
+      set text(size: fsz.four, font: ff.song)
+      set align(center)
+      let part = partcounter.at(loc).first()
+      let pg = counter(page).at(loc).first()
+      if (part != 0) or (pg != 1) {
+        [
           #ch_padding(pad: 1pt)[北京理工大学本科生毕业设计（论文）]
           #v(-0.8em)
           #line(length: 100%)
-        ]}
-        v(2em)
-      }
-    ),
-    footer: locate(
-      loc => {
-        // if skippedstate.at(loc) and calc.even(loc.page()) { return }
-        set text(size: fsz.five, font: ff.song)
-        set align(center)
-        let part = partcounter.at(loc).first()
-        [
-          #if 0 < part and part < 20 {
-            numbering("I", counter(page).at(loc).first())
-          }
-          #if 20 <= part {
-            str(counter(page).at(loc).first())
-          }
-          <__footer__>
         ]
-      },
-    ),
+      }
+      v(2em)
+    }),
+    footer: locate(loc => {
+      // if skippedstate.at(loc) and calc.even(loc.page()) { return }
+      set text(size: fsz.five, font: ff.song)
+      set align(center)
+      let part = partcounter.at(loc).first()
+      [
+        #if 0 < part and part < 20 {
+          numbering("I", counter(page).at(loc).first())
+        }
+        #if 20 <= part {
+          str(counter(page).at(loc).first())
+        }
+        <__footer__>
+      ]
+    }),
   )
 
   set text(fsz.one, font: ff.song, lang: "zh")
@@ -398,8 +397,8 @@
   set list(indent: 2em)
   set enum(indent: 2em)
 
-// if your system fonts support bold character, then comment this line
-//  show strong: it => show-fakebold(weight: "bold", it.body)
+  // if your system fonts support bold character, then comment this line
+  show strong: it => show-fakebold(it.body)
   show emph: it => text(style: "italic", it.body)
   show par: set block(spacing: linespacing)
   show raw: set text(font: ff.code)
@@ -409,7 +408,7 @@
     #set par(first-line-indent: 0em, justify: false)
     #set text(font: ff.hei)
 
-    #let makeheading = (before:0.5em, after:0em, sz, s) => {
+    #let makeheading = (before: 0.5em, after: 0em, sz, s) => {
       v(before)
       set text(size: sz)
       strong(s)
@@ -422,7 +421,7 @@
       if it.numbering != none {
         chaptercounter.step()
       }
-      footnotecounter.update(())
+      // footnotecounter.update(())
       imagecounter.update(())
       tablecounter.update(())
       rawcounter.update(())
@@ -464,11 +463,19 @@
       ]
     }
   ]
-
+  
   show ref: it => {
     if it.element == none {
       // Keep citations as is
-      it
+
+      // every cite can only appear once, or the index will be confused ... this template nearly cannot use
+      let ref_no = counter(ref).at(it.location()).first();
+      let ref = query(heading.where(level: 1)).last().location()
+      [
+          // It cannot link to references at the last of paper.
+          // Instead it goes top. This maybe the shitest part of the template.
+          #link(ref, super("["))#it#link(ref, super("]"))
+      ]
     } else {
       // Remove prefix spacing
       h(0em, weak: true)
@@ -581,7 +588,6 @@
     //   align(left + top)[论文编号：],
     //   align(left + top)[#blindid],
     // )
-
     // v(4fr)
     // text(fsz.s_two, font: ff.fangsong)[#date]
     // v(1fr)
@@ -663,12 +669,11 @@
       #v(0.5em)
       指导老师签名：#h(5em)日#h(0.5em)期：#h(2em)年#h(2em)月#h(2em)日
     ]
-    
   }
 
   smartpagebreak()
 
-   // Chinese abstract ----------------------------------------
+  // Chinese abstract ----------------------------------------
   set align(top + center)
   text(font: ff.hei, size: fsz.s_two)[
     *#ctitle*
@@ -706,7 +711,7 @@
   text(size: fsz.s_four)[
     *Key Words:#h(0.5em)#ekeywords.join("; ")*
   ]
-  
+
   // Table of contents --------------------------------
   set text(font: ff.song, size: fsz.s_four)
   chineseoutline(depth: outlinedepth, indent: true)
@@ -737,5 +742,4 @@
       #text(font: ff.song, size: fsz.s_four, acknowledgements)
     ]
   }
-  
 }

@@ -1,9 +1,14 @@
-#let cabs = [Alien是使用Rust编程语言所开发的一个操作系统。该系统融合了基于语言的隔离机制、使用代理接口和内存隔离以保证系统健壮性与安全性、支持系统各部分的动态加载与更换。Alien中使用的驱动程序完全使用安全的Rust代码编写以保证内存安全性。应用编译器保障的约束能够大幅减少由人脑保证约束可能带来的漏洞。在对驱动进行全面安全化之后，可以将其加入Alien或其他任一个操作系统该中，以提高系统整体的安全性。通过与不安全代码所编写的设备驱动相对比，测试对于读写性能有高要求的设备，可以看出驱动的安全化所影响的仅限于程序结构，而对性能几乎无负面影响。这证明了使用安全Rust代码编写驱动所带来的安全性提升不会伴随性能降低，具有实用价值。
+#let cabs = [
+  操作系统安全性由多方面综合构成，其中一个重要影响因素是驱动的安全性。本文通过使用基于Rust语言的内存隔离与保障机制来对设备驱动进行优化，应用编译器保障的约束并减少由人脑保证的约束，以此减少由开发者引入的漏洞。通过此方法被安全化的驱动可加入任一个操作系统该中，以提高该系统整体的安全性。将其以隔离域的形式加入Alien操作系统的分支后，在安全驱动和Alien的联合下，驱动能够支持故障隔离，防止在由硬件故障引起驱动崩溃时，操作系统本身全面停止运行。同时，还支持在崩溃发生时自动重新加载，在用户没有感知的情况下解决问题并恢复正常功能。
+
+  通过与不安全代码所编写的设备驱动相对比，测试对于读写性能有高要求的设备，可以看出驱动的安全化所影响的仅限于程序结构，而对性能几乎无负面影响。这证明了使用安全Rust代码编写的驱动在功能上可以替换原有驱动，且所带来的安全性提升不会伴随性能降低的副作用，具有实用价值。
 ]
 
 #let ckw = ("Rust", "隔离", "驱动", "操作系统", "安全")
 
-#let eabs = [Alien is an operating system developed using the Rust programming language. The system incorporates language-based isolation mechanisms, uses proxy interfaces and memory isolation for robustness and security, and supports dynamic loading and replacement of system components. drivers used in Alien are written entirely in safe Rust code for memory security. Applying compiler-guaranteed constraints dramatically reduces the vulnerability that can result from human-guaranteed constraints. After a driver is fully secured, it can be added to Alien or any other operating system to improve the overall security of the system. By testing devices with high read/write performance requirements against device drivers written in insecure code, it can be seen that driver securitization affects only the program structure, with little to no negative impact on performance. This demonstrates the practical value of using secure Rust code to write drivers with no performance degradation.]
+#let eabs = [Operating system security consists of a combination of many aspects, one of the most important influencing factors is the security of the driver. In this paper, we optimize device drivers by using a memory isolation and security mechanism based on the Rust language, applying compiler-guaranteed constraints and reducing human-guaranteed constraints to reduce vulnerabilities introduced by developers. Drivers secured in this way can be added to any operating system to improve the overall security of that system. By adding it to an Alien OS branch as an isolation domain, the driver, in conjunction with the secure driver and Alien, can support fault isolation, preventing the OS itself from shutting down completely in the event of a driver crash caused by a hardware failure. It also supports automatic reloading when a crash occurs, solving the problem and restoring normal functionality without user perception.
+
+  Comparing with the device driver written in unsafe code, and testing devices with high read/write performance requirements, it can be seen that the impact of driver securitization is limited to the program structure, and has almost no negative impact on the performance. This proves that drivers written in safe Rust code can functionally replace the original driver, and that the security enhancement will not be accompanied by the side effect of performance degradation, which is of practical value.]
 
 #let ekw = ("Rust", "isolation", "driver", "OS", "safety")
 

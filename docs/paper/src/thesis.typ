@@ -30,5 +30,6 @@
 
 #pagebreak(weak: true)
 #bibliography(("ref.yaml", "ref.bib"), style: "gb-7714-2015-note")
+// #bibliography(("ref.yaml", "ref.bib"), style: "ieee")
 // #pagebreak(weak: true)
 // #appendix()
