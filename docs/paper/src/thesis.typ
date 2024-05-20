@@ -18,7 +18,7 @@
   eabstract: eabs,
   ekeywords: ekw,
   acknowledgements: ack,
-  blind: true,
+  blind: false,
   doc,
 )
 
@@ -29,7 +29,7 @@
 #include "ch5.typ"
 
 #pagebreak(weak: true)
-#bibliography(("ref.yaml", "ref.bib"), style: "gb-7714-2015-note")
-// #bibliography(("ref.yaml", "ref.bib"), style: "ieee")
+#bibliography(("ref.yaml"), style: "gb-7714-2015-note")
+// #bibliography(("ref.yaml"), style: "ieee")
 // #pagebreak(weak: true)
 // #appendix()
