@@ -185,4 +185,31 @@ shadow:
     title: ACM Transactions on Computer Systems
     volume: 24
     issue: 4
+
+mkernel:
+  type: thesis
+  title: 面向微内核的操作系统构建技术研究
+  author: 易佳佳
+  organization: 电子科技大学
+  date: 2022
+  serial-number:
+    doi: 10.27005/d.cnki.gdzku.2022.000404
+
+safe:
+  type: article
+  title: 操作系统设备驱动可靠性研究综述
+  author: ["颜跃进", "秦莹", "孔金珠", "戴华东", "邵立松"]
+  organization: 国防科技大学计算机学院
+  date: 2009
+  parent:
+    title: 计算机工程与科学
+    volume: 31
+    issue: 5
+
+form:
+  type: thesis
+  title: 微内核操作系统安全性的形式化研究
+  author: 徐锡健
+  organization: 杭州电子科技大学
+  date: 2018
   
