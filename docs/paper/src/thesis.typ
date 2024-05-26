@@ -27,6 +27,7 @@
 #include "ch3.typ"
 #include "ch4.typ"
 #include "ch5.typ"
+#include "ch6.typ"
 
 #pagebreak(weak: true)
 #bibliography(("ref.yaml"))
