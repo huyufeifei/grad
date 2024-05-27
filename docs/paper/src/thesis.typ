@@ -12,7 +12,7 @@
   cmajor: "计算机科学与技术",
   csupervisor: "陆慧梅",
   esupervisor: "",
-  date: "2024年5月17日",
+  date: "2024年5月30日",
   cabstract: cabs,
   ckeywords: ckw,
   eabstract: eabs,
