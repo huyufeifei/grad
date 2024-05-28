@@ -393,6 +393,7 @@
     numbering("(1-1)", chaptercounter.at(loc).first(), ..nums)
   }))
   set list(indent: 2em)
+  set table(stroke: (left: none, right: none), align: center+horizon,)
   set enum(indent: 2em)
   set bibliography(style: "gb-7714-2015-numeric")
 

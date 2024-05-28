@@ -28,8 +28,8 @@
 测试所得的原始数据可以在#link("https://github.com/huyufeifei/grad/tree/master/info/test_data")[此链接处]查看，测试所用代码分别在github代码仓库下的`svdrivers/qemu`和`virtio-drivers/example/riscv`文件夹中。测试的结果如下表：
 
 #figure(
-  table(columns: (5em, 1fr, 1fr, 1fr, 1fr), align: center+horizon,
-//    stroke: (left: none, right: none),
+  table(columns: (5em, 1fr, 1fr, 1fr, 1fr), 
+    stroke: 1pt + black,
     table.cell(rowspan:2, "操作类型"), table.cell(colspan:2, "安全代码"), table.cell(colspan:2, "不安全代码"),
     "平均速度", "方差", "平均速度", "方差",
     "读", "19.86MB/s", "0.027", "19.87MB/s", "0.086",
