@@ -148,11 +148,11 @@
   heading(title, numbering: none, outlined: false)
   locate(
     it => {
-      let elements = query(heading.where(outlined: true).after(it), it)
+      let elements = query(heading.where(outlined: true), it)
 
       for el in elements {
         // Skip list of images and list of tables
-        if partcounter.at(el.location()).first() < 20 and el.numbering == none { continue }
+        // if partcounter.at(el.location()).first() < 20 and el.numbering == none { continue }
 
         // Skip headings that are too deep
         if depth != none and el.level > depth { continue }
@@ -188,11 +188,11 @@
           box(width: 1fr, h(10pt) + box(width: 1fr, repeat[.]) + h(10pt))
 
           // Page number
-          let footer = query(selector(<__footer__>).after(el.location()))
-          let page_number = if footer == () {
-            0
+          let footer = query(selector(<__footer__>).after(el.location())).first()
+          let page_number = if partcounter.at(el.location()).first() < 20 {
+            numbering("I", counter(page).at(el.location()).first())
           } else {
-            counter(page).at(footer.first().location()).first()
+            counter(page).at(footer.location()).first()
           }
 
           link(el.location(), str(page_number))
@@ -404,6 +404,16 @@
   show raw: set text(font: ff.code)
 
   show heading: it => [
+
+    #if it.body.has("text"){
+      if it.body.text == "Abstract" {
+        return []
+      }
+      if it.body.text == "摘要" {
+        return []
+      }
+    }
+
     // Cancel indentation for headings
     #set par(first-line-indent: 0em, justify: false)
     #set text(font: ff.hei)
@@ -667,6 +677,7 @@
 
   // Chinese abstract ----------------------------------------
   set align(top + center)
+  heading(numbering: none, [摘要])
   text(font: ff.hei, size: fsz.s_two)[
     *#ctitle*
     #v(1em)
@@ -687,6 +698,7 @@
 
   // English abstract -------------------
   set align(center)
+  heading(numbering: none, [Abstract])
   text(size: fsz.three)[
     *#etitle*
     #v(2em)
